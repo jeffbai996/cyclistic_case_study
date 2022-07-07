@@ -9,15 +9,26 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Case Study Overview
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This case study is the capstone project for the Google Data Analytics Professional Certificate. The following analysis was completed for Course 8 - Case Study 1.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## About Cyclistic
 
-```{r cars}
-summary(cars)
-```
+Cyclistic is a bike-share program founded in 2016 in Chicago, Illinois. Today, it operates more than 5,800 bicycles and 600 docking stations. With a variety of regular and assistive bike types (recumbents, hand-trikes, cargo bikes) and flexible pricing plans, Cyclistic has garnered broad appeal across consumer segments.
+
+## Business Task
+
+We aim to answer three main guiding questions for the Cyclistic marketing team:
+
+* How do annual members and casual riders user Cyclistic bikes differently?
+* Why would casual riders buy Cyclistic annual memberships?
+* How can Cyclistic use digital media to influence casual riders to become members?
+
+## Data Sources
+
+This analysis uses the [dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) originally published in "'Sophisticated, Clear, and Polished': Divvy and Data Visualization (Case Study)" by Kevin Hartman. These data are used in this analysis under the terms of Motivate International's [Data License Agreement](https://ride.divvybikes.com/data-license-agreement).
+
 
 ## Including Plots
 
