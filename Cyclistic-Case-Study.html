@@ -375,7 +375,7 @@ Bike-Share Navigate Speedy Success?</h1>
 Professional Certificate. The following analysis was completed for
 Course 8 - Case Study 1.</p>
 <div id="overview" class="section level1">
-<h1>OVERVIEW</h1>
+<h1>Overview</h1>
 <div id="about-cyclistic" class="section level3">
 <h3>About Cyclistic</h3>
 <p>Cyclistic is a bike-share program founded in 2016 in Chicago,
@@ -404,6 +404,17 @@ strategy.</p>
 <p><strong>Executive Team</strong><br />
 Decides whether to approve the recommended marketing program.</p>
 </div>
+<div id="data-sources" class="section level3">
+<h3>Data Sources</h3>
+<p>This analysis uses the <a href="https://divvy-tripdata.s3.amazonaws.com/index.html">dataset</a>
+originally published in “‘Sophisticated, Clear, and Polished’: Divvy and
+Data Visualization (Case Study)” by Kevin Hartman. These data are used
+in this analysis under the terms of Motivate International’s <a href="https://ride.divvybikes.com/data-license-agreement">Data License
+Agreement</a>.</p>
+</div>
+</div>
+<div id="scope-of-work" class="section level1">
+<h1>Scope of Work</h1>
 <div id="business-task" class="section level3">
 <h3>Business Task</h3>
 <p>The team aims to answer three main guiding questions for the
@@ -427,14 +438,41 @@ become members?</li>
 <li>Top three recommendations based on analysis</li>
 </ul>
 </div>
-<div id="data-sources" class="section level3">
-<h3>Data Sources</h3>
-<p>This analysis uses the <a href="https://divvy-tripdata.s3.amazonaws.com/index.html">dataset</a>
-originally published in “‘Sophisticated, Clear, and Polished’: Divvy and
-Data Visualization (Case Study)” by Kevin Hartman. These data are used
-in this analysis under the terms of Motivate International’s <a href="https://ride.divvybikes.com/data-license-agreement">Data License
-Agreement</a>.</p>
 </div>
+<div id="define-the-business-task" class="section level1">
+<h1>Define the Business Task</h1>
+<div id="the-current-problem" class="section level3">
+<h3>The Current Problem</h3>
+<p>Cyclistic’s marketing strategy has so far been focused on building
+awareness and appealing to broad consumer segments. This was
+accomplished with flexible pricing plans (single-ride passes, full-day
+passes, and annual memberships). However, Cyclistic is no longer able to
+rely solely on this strategy as it reaches market saturation.</p>
+<p>Based on findings from the finance team, marketing director Moreno
+believes that future revenue growth is best captured by maximizing the
+number of annual members. In addition, since casual riders are already
+aware of the Cyclistic program, Moreno believes there is a high chance
+of converting casual riders into members, given the right marketing
+strategy.</p>
+<p>The marketing analytics team’s primary goal, therefore, is to
+determine how annual and casual riders differ in their usage behavior,
+why casual riders would want to buy annual memberships, and how
+Cyclistic can leverage digital media to influence casual riders to
+become members.</p>
+</div>
+<div id="stakeholder-expectations" class="section level3">
+<h3>Stakeholder Expectations</h3>
+<p><strong>Executive Team</strong><br />
+The executive team will expect to receive a high-level takeaway of the
+main data analysis insights, along with how these insights drive
+Cyclistic’s future marketing strategy.</p>
+<p><strong>Lily Moreno, Director of Marketing</strong><br />
+The director of marketing will expect evidence to support her theory and
+proposed marketing strategy.</p>
+</div>
+</div>
+<div id="documentation-data-cleaning-and-manipulation" class="section level1">
+<h1>Documentation: Data Cleaning and Manipulation</h1>
 <div id="setting-up-the-r-environment" class="section level3">
 <h3>Setting up the R environment</h3>
 <p>For this analysis, we will be using R in RStudio.</p>
@@ -470,9 +508,11 @@ df_202203 &lt;- read_csv(&quot;datasets/202203-divvy-tripdata.csv&quot;)
 df_202204 &lt;- read_csv(&quot;datasets/202204-divvy-tripdata.csv&quot;)
 df_202205 &lt;- read_csv(&quot;datasets/202205-divvy-tripdata.csv&quot;)</code></pre>
 </div>
+<div id="assessing-data-quality" class="section level3">
+<h3>Assessing Data Quality</h3>
+<p>To assess data quality, we used the ROCCC
+(reliable-original-comprehensive-current-cited) model.</p>
 </div>
-<div id="ask" class="section level1">
-<h1>ASK</h1>
 </div>
 
 

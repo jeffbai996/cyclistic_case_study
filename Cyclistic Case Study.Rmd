@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This case study is the capstone project for the Google Data Analytics Professional Certificate. The following analysis was completed for Course 8 - Case Study 1. 
 
-# OVERVIEW
+# Overview
 ### About Cyclistic
 Cyclistic is a bike-share program founded in 2016 in Chicago, Illinois. Today, it operates more than 5,800 bicycles and 600 docking stations. With a variety of regular and assistive bike types (recumbents, hand-trikes, cargo bikes) and flexible pricing plans, Cyclistic has garnered broad appeal across consumer segments.
 
@@ -28,6 +28,10 @@ Collects, analyzes, and reports data to guide Cyclistic's marketing strategy.
 **Executive Team**  
 Decides whether to approve the recommended marketing program.
 
+### Data Sources
+This analysis uses the [dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) originally published in "'Sophisticated, Clear, and Polished': Divvy and Data Visualization (Case Study)" by Kevin Hartman. These data are used in this analysis under the terms of Motivate International's [Data License Agreement](https://ride.divvybikes.com/data-license-agreement).
+
+# Scope of Work
 ### Business Task
 The team aims to answer three main guiding questions for the Cyclistic marketing team:
 
@@ -43,10 +47,23 @@ The team aims to answer three main guiding questions for the Cyclistic marketing
 * Supporting visualizations and key findings
 * Top three recommendations based on analysis
 
-### Data Sources
-This analysis uses the [dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) originally published in "'Sophisticated, Clear, and Polished': Divvy and Data Visualization (Case Study)" by Kevin Hartman. These data are used in this analysis under the terms of Motivate International's [Data License Agreement](https://ride.divvybikes.com/data-license-agreement).
+# Define the Business Task
 
+### The Current Problem
+Cyclistic's marketing strategy has so far been focused on building awareness and appealing to broad consumer segments. This was accomplished with flexible pricing plans (single-ride passes, full-day passes, and annual memberships). However, Cyclistic is no longer able to rely solely on this strategy as it reaches market saturation.
 
+Based on findings from the finance team, marketing director Moreno believes that future revenue growth is best captured by maximizing the number of annual members. In addition, since casual riders are already aware of the Cyclistic program, Moreno believes there is a high chance of converting casual riders into members, given the right marketing strategy.
+
+The marketing analytics team's primary goal, therefore, is to determine how annual and casual riders differ in their usage behavior, why casual riders would want to buy annual memberships, and how Cyclistic can leverage digital media to influence casual riders to become members.
+
+### Stakeholder Expectations
+**Executive Team**  
+The executive team will expect to receive a high-level takeaway of the main data analysis insights, along with how these insights drive Cyclistic's future marketing strategy.
+
+**Lily Moreno, Director of Marketing**  
+The director of marketing will expect evidence to support her theory and proposed marketing strategy.
+
+# Documentation: Data Cleaning and Manipulation
 ### Setting up the R environment
 For this analysis, we will be using R in RStudio.
 
@@ -73,7 +90,7 @@ library(janitor)
 ### Importing raw dataset
 The scope of our analysis covers the last 12 months of available trip data.
 
-We first import the data CSVs as data frames into RStudio for later use:
+We first import the data CSVs as data frames into RStudio:
 
 ```{r, eval = FALSE}
 df_202106 <- read_csv("datasets/202106-divvy-tripdata.csv")
@@ -90,5 +107,6 @@ df_202204 <- read_csv("datasets/202204-divvy-tripdata.csv")
 df_202205 <- read_csv("datasets/202205-divvy-tripdata.csv")
 ```
 
-# ASK
+### Assessing Data Quality
+To assess data quality, we used the ROCCC (reliable-original-comprehensive-current-cited) model.
 
