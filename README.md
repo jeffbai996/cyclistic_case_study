@@ -1,2 +1,2 @@
-# cyclistic_case_study
+# Cyclistic Case Study
 Cyclistic case study for Google Data Analytics
