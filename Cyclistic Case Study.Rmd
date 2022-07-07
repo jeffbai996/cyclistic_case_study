@@ -107,6 +107,67 @@ df_202204 <- read_csv("datasets/202204-divvy-tripdata.csv")
 df_202205 <- read_csv("datasets/202205-divvy-tripdata.csv")
 ```
 
-### Assessing Data Quality
-To assess data quality, we used the ROCCC (reliable-original-comprehensive-current-cited) model.
+### Inspecting raw data
+To gain a better general understanding of the data for the next step (assessing data quality), we can call skim_without_charts() on one of our datasets for a brief summary:
 
+```{r, eval = FALSE}
+skim_without_charts(df_202106)
+
+── Data Summary ────────────────────────
+                           Values   
+Name                       df_202106
+Number of rows             729595   
+Number of columns          13       
+_______________________             
+Column type frequency:              
+  character                7        
+  numeric                  4        
+  POSIXct                  2        
+________________________            
+Group variables            None     
+
+── Variable type: character ────────────────────────────────────────────────────────────────────────────────────────────────────
+  skim_variable      n_missing complete_rate min max empty n_unique whitespace
+1 ride_id                    0         1      16  16     0   729595          0
+2 rideable_type              0         1      11  13     0        3          0
+3 start_station_name     80093         0.890  10  53     0      689          0
+4 start_station_id       80093         0.890   3  35     0      689          0
+5 end_station_name       86387         0.882  10  53     0      690          0
+6 end_station_id         86387         0.882   3  35     0      690          0
+7 member_casual              0         1       6   6     0        2          0
+
+── Variable type: numeric ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate  mean     sd    p0   p25   p50   p75  p100
+1 start_lat             0         1      41.9 0.0425  41.6  41.9  41.9  41.9  42.1
+2 start_lng             0         1     -87.6 0.0260 -87.8 -87.7 -87.6 -87.6 -87.5
+3 end_lat             717         0.999  41.9 0.0427  41.5  41.9  41.9  41.9  42.1
+4 end_lng             717         0.999 -87.6 0.0262 -87.9 -87.7 -87.6 -87.6 -87.5
+
+── Variable type: POSIXct ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate min                 max                 median              n_unique
+1 started_at            0             1 2021-06-01 00:00:38 2021-06-30 23:59:59 2021-06-14 19:46:47   589805
+2 ended_at              0             1 2021-06-01 00:06:22 2021-07-13 22:51:35 2021-06-14 20:13:55   589069
+```
+
+### Assessing Data Quality
+Having taken a high-level look at the summary metrics for our dataset, we can start making some assessments about the quality and reliability of the data, which will be used to inform further data cleaning actions.
+
+To assess data quality, we use the ROCCC (reliable-original-comprehensive-current-cited) model.
+
+**Reliability**  
+As seen in the data summary, over 10% of rides have missing values. Upon inspecting the data frame in RStudio, we also found a significant number of rides over 24 hours, as well as rides with end date/time before start date/time. Station IDs were also found to have changed over time, possibly indicative of changes in data collection.
+
+**Originality**  
+The data are sourced directly from Motivate International, a major bicycle sharing provider in North America. As they are also the operators of Cyclistic, this data is deemed original.
+
+**Comprehensiveness**  
+The data contains bike type, rider type, geographic information, as well as dates/times of trips on the system. As our analyses focus on differentiating casual and member ride behavior, this dataset meets our requirements for comprehensiveness.
+
+**Current**  
+The data covers all rides completed between June 2021 and May 2022.
+
+**Cited**  
+The dataset is maintained by Motivate International and vetted for use as a sample dataset in case studies. The data was last updated in May 2022.
+
+**Conclusion**  
+We are satisfied that this dataset meets our requirements for high-quality data, with the aforementioned caveats in its reliability to be remedied during data cleaning.
