@@ -43,6 +43,30 @@ install.packages("tidyverse")
 library(tidyverse)
 ```
 
+## Importing raw dataset
+
+The scope of our analysis covers the last 12 months of available trip data.
+
+We first import the data CSVs as data frames into RStudio:
+
+```{r}
+df_202106 <- read_csv("datasets/202106-divvy-tripdata.csv")
+df_202107 <- read_csv("datasets/202107-divvy-tripdata.csv")
+df_202108 <- read_csv("datasets/202108-divvy-tripdata.csv")
+df_202109 <- read_csv("datasets/202109-divvy-tripdata.csv")
+df_202110 <- read_csv("datasets/202110-divvy-tripdata.csv")
+df_202111 <- read_csv("datasets/202111-divvy-tripdata.csv")
+df_202112 <- read_csv("datasets/202112-divvy-tripdata.csv")
+df_202201 <- read_csv("datasets/202201-divvy-tripdata.csv")
+df_202202 <- read_csv("datasets/202202-divvy-tripdata.csv")
+df_202203 <- read_csv("datasets/202203-divvy-tripdata.csv")
+df_202204 <- read_csv("datasets/202204-divvy-tripdata.csv")
+df_202205 <- read_csv("datasets/202205-divvy-tripdata.csv")
+```
+
+
+
+
 
 
 ## to be deleted
