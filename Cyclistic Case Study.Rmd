@@ -1,5 +1,5 @@
 ---
-title: "Cyclistic Case Study"
+title: "Cyclistic Case Study - How Does a Bike-Share Navigate Speedy Success?"
 author: "Jeff Bai"
 date: '2022-07-06'
 output: html_document
@@ -11,45 +11,71 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This case study is the capstone project for the Google Data Analytics Professional Certificate. The following analysis was completed for Course 8 - Case Study 1. 
 
-## About Cyclistic
-
+# OVERVIEW
+### About Cyclistic
 Cyclistic is a bike-share program founded in 2016 in Chicago, Illinois. Today, it operates more than 5,800 bicycles and 600 docking stations. With a variety of regular and assistive bike types (recumbents, hand-trikes, cargo bikes) and flexible pricing plans, Cyclistic has garnered broad appeal across consumer segments.
 
-## Scenario
-
+### Scenario
 The director of marketing at Cyclistic, Lily Moreno, believes that the future success of the company depends on maximizing the number of annual memberships. To that end, our team wants to understand how casual riders and annual members use Cyclistic bikes differently. From there, Cyclistic will design a new marketing strategy to convert more casual riders into annual members.
 
-## Business Task
+### Stakeholders
+**Lily Moreno, Director of Marketing**  
+Develops campaigns and initiatives to promote the bike-share program.
 
-We aim to answer three main guiding questions for the Cyclistic marketing team:
+**Cyclistic Marketing Analytics Team**  
+Collects, analyzes, and reports data to guide Cyclistic's marketing strategy.
+
+**Executive Team**  
+Decides whether to approve the recommended marketing program.
+
+### Business Task
+The team aims to answer three main guiding questions for the Cyclistic marketing team:
 
 * How do annual members and casual riders user Cyclistic bikes differently?
 * Why would casual riders buy Cyclistic annual memberships?
 * How can Cyclistic use digital media to influence casual riders to become members?
 
-## Data Sources
+### Deliverables
+* A clear statement of the business task
+* A description of all data sources used
+* Documentation of any cleaning or manipulation of data
+* A summary of the analysis
+* Supporting visualizations and key findings
+* Top three recommendations based on analysis
 
+### Data Sources
 This analysis uses the [dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) originally published in "'Sophisticated, Clear, and Polished': Divvy and Data Visualization (Case Study)" by Kevin Hartman. These data are used in this analysis under the terms of Motivate International's [Data License Agreement](https://ride.divvybikes.com/data-license-agreement).
 
 
-## Setting up the R environment
-
-For this analysis, we will be using R.
+### Setting up the R environment
+For this analysis, we will be using R in RStudio.
 
 Set up the tidyverse:
 
-```{r}
+```{r, eval = FALSE}
 install.packages("tidyverse")
+
 library(tidyverse)
 ```
 
-## Importing raw dataset
+To assist in data cleaning, install here, skimr, and janitor, and load them into the environment:
 
+```{r, eval = FALSE}
+install.packages("here")
+install.packages("skimr")
+install.packages("janitor")
+
+library(here)
+library(skimr)
+library(janitor)
+```
+
+### Importing raw dataset
 The scope of our analysis covers the last 12 months of available trip data.
 
-We first import the data CSVs as data frames into RStudio:
+We first import the data CSVs as data frames into RStudio for later use:
 
-```{r}
+```{r, eval = FALSE}
 df_202106 <- read_csv("datasets/202106-divvy-tripdata.csv")
 df_202107 <- read_csv("datasets/202107-divvy-tripdata.csv")
 df_202108 <- read_csv("datasets/202108-divvy-tripdata.csv")
@@ -64,14 +90,5 @@ df_202204 <- read_csv("datasets/202204-divvy-tripdata.csv")
 df_202205 <- read_csv("datasets/202205-divvy-tripdata.csv")
 ```
 
+# ASK
 
-
-
-
-
-## to be deleted
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
