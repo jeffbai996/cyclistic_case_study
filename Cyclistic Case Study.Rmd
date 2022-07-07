@@ -9,13 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Case Study Overview
-
-This case study is the capstone project for the Google Data Analytics Professional Certificate. The following analysis was completed for Course 8 - Case Study 1.
+This case study is the capstone project for the Google Data Analytics Professional Certificate. The following analysis was completed for Course 8 - Case Study 1. 
 
 ## About Cyclistic
 
 Cyclistic is a bike-share program founded in 2016 in Chicago, Illinois. Today, it operates more than 5,800 bicycles and 600 docking stations. With a variety of regular and assistive bike types (recumbents, hand-trikes, cargo bikes) and flexible pricing plans, Cyclistic has garnered broad appeal across consumer segments.
+
+## Scenario
+
+The director of marketing at Cyclistic, Lily Moreno, believes that the future success of the company depends on maximizing the number of annual memberships. To that end, our team wants to understand how casual riders and annual members use Cyclistic bikes differently. From there, Cyclistic will design a new marketing strategy to convert more casual riders into annual members.
 
 ## Business Task
 
@@ -30,10 +32,20 @@ We aim to answer three main guiding questions for the Cyclistic marketing team:
 This analysis uses the [dataset](https://divvy-tripdata.s3.amazonaws.com/index.html) originally published in "'Sophisticated, Clear, and Polished': Divvy and Data Visualization (Case Study)" by Kevin Hartman. These data are used in this analysis under the terms of Motivate International's [Data License Agreement](https://ride.divvybikes.com/data-license-agreement).
 
 
-## Including Plots
+## Setting up the R environment
 
-You can also embed plots, for example:
+For this analysis, we will be using R.
 
+Set up the tidyverse:
+
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+
+
+## to be deleted
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
