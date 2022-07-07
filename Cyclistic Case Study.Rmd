@@ -2,7 +2,10 @@
 title: "Cyclistic Case Study - How Does a Bike-Share Navigate Speedy Success?"
 author: "Jeff Bai"
 date: '2022-07-06'
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_depth: 1
 ---
 
 ```{r setup, include=FALSE}
@@ -47,7 +50,7 @@ The team aims to answer three main guiding questions for the Cyclistic marketing
 * Supporting visualizations and key findings
 * Top three recommendations based on analysis
 
-# Define the Business Task
+# Deliverable 1: Define the Business Task
 
 ### The Current Problem
 Cyclistic's marketing strategy has so far been focused on building awareness and appealing to broad consumer segments. This was accomplished with flexible pricing plans (single-ride passes, full-day passes, and annual memberships). However, Cyclistic is no longer able to rely solely on this strategy as it reaches market saturation.
@@ -63,9 +66,9 @@ The executive team will expect to receive a high-level takeaway of the main data
 **Lily Moreno, Director of Marketing**  
 The director of marketing will expect evidence to support her theory and proposed marketing strategy.
 
-# Documentation: Data Cleaning and Manipulation
+# Deliverable 2: Documentation - Data Cleaning and Manipulation
 ### Setting up the R environment
-For this analysis, we will be using R in RStudio.
+For this analysis, we will be using R in RStudio. This is due to the size of the dataset, which contains about 5.8 million records before data cleaning.
 
 Set up the tidyverse:
 
