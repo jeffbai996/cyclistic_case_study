@@ -68,9 +68,9 @@ The director of marketing will expect evidence to support her theory and propose
 
 # Deliverable 2: Documentation - Data Cleaning and Manipulation
 ### Setting up the R environment
-For this analysis, we will be using R in RStudio. This is due to the size of the dataset, which contains about 5.8 million records before data cleaning.
+For this analysis, we will be using R in RStudio. This is due to the size of the dataset, which contains about 5.86 million records before data cleaning.
 
-Set up the tidyverse:
+Set up and load the tidyverse:
 
 ```{r, eval = FALSE}
 install.packages("tidyverse")
@@ -78,15 +78,17 @@ install.packages("tidyverse")
 library(tidyverse)
 ```
 
-To assist in data cleaning, install here, skimr, and janitor, and load them into the environment:
+To assist in data cleaning, install here, skimr, lubridate, and janitor, and load them into the environment:
 
 ```{r, eval = FALSE}
 install.packages("here")
 install.packages("skimr")
+install.packages("lubridate")
 install.packages("janitor")
 
 library(here)
 library(skimr)
+library(lubridate)
 library(janitor)
 ```
 
@@ -172,5 +174,35 @@ The data covers all rides completed between June 2021 and May 2022.
 **Cited**  
 The dataset is maintained by Motivate International and vetted for use as a sample dataset in case studies. The data was last updated in May 2022.
 
-**Conclusion**  
-We are satisfied that this dataset meets our requirements for high-quality data, with the aforementioned caveats in its reliability to be remedied during data cleaning.
+*We are satisfied that this dataset meets our requirements for high-quality data, with the aforementioned caveats in its reliability to be remedied during data cleaning.*
+
+### Merging Dataset
+For easier cleaning, manipulation, and further analysis, we will merge our 12 data frames into 1.
+
+```{r, eval = FALSE}
+df_bike <- rbind(df_202106, df_202107, df_202108, df_202109, df_202110,
+                 df_202111, df_202112, df_202201, df_202202, df_202203,
+                 df_202204, df_202205)
+```
+
+We will also make a backup of the merged data frame, as we want to keep a copy of the dataset pre-cleaning.
+
+```{r, eval = FALSE}
+df_bike_backup <- df_bike
+```
+
+### Adding Calculated Columns
+To simplify further analysis and add metrics by which to evaluate rider behavior, we will create two new columns representing ride length (time in minutes), and the day of the week the ride occurred.
+
+```{r, eval = FALSE}
+df_bike$ride_length <- as.numeric(df_bike$ended_at - df_bike$started_at, units="mins")
+df_bike_test$day_of_week <- wday(df_bike_test$started_at)
+```
+
+### Cleaning Dataset
+We will first check for any duplicate records:
+```{r, eval = FALSE}
+df_bike <- distinct(df_bike)
+```
+
+Then, we remove columns that are not relevant to the analysis, namely trip ID, ...

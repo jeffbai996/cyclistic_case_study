@@ -486,20 +486,22 @@ proposed marketing strategy.</p>
 <div id="setting-up-the-r-environment" class="section level3">
 <h3>Setting up the R environment</h3>
 <p>For this analysis, we will be using R in RStudio. This is due to the
-size of the dataset, which contains about 5.8 million records before
+size of the dataset, which contains about 5.86 million records before
 data cleaning.</p>
-<p>Set up the tidyverse:</p>
+<p>Set up and load the tidyverse:</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 
 library(tidyverse)</code></pre>
-<p>To assist in data cleaning, install here, skimr, and janitor, and
-load them into the environment:</p>
+<p>To assist in data cleaning, install here, skimr, lubridate, and
+janitor, and load them into the environment:</p>
 <pre class="r"><code>install.packages(&quot;here&quot;)
 install.packages(&quot;skimr&quot;)
+install.packages(&quot;lubridate&quot;)
 install.packages(&quot;janitor&quot;)
 
 library(here)
 library(skimr)
+library(lubridate)
 library(janitor)</code></pre>
 </div>
 <div id="importing-raw-dataset" class="section level3">
@@ -591,10 +593,36 @@ The data covers all rides completed between June 2021 and May 2022.</p>
 The dataset is maintained by Motivate International and vetted for use
 as a sample dataset in case studies. The data was last updated in May
 2022.</p>
-<p><strong>Conclusion</strong><br />
-We are satisfied that this dataset meets our requirements for
+<p><em>We are satisfied that this dataset meets our requirements for
 high-quality data, with the aforementioned caveats in its reliability to
-be remedied during data cleaning.</p>
+be remedied during data cleaning.</em></p>
+</div>
+<div id="merging-dataset" class="section level3">
+<h3>Merging Dataset</h3>
+<p>For easier cleaning, manipulation, and further analysis, we will
+merge our 12 data frames into 1.</p>
+<pre class="r"><code>df_bike &lt;- rbind(df_202106, df_202107, df_202108, df_202109, df_202110,
+                 df_202111, df_202112, df_202201, df_202202, df_202203,
+                 df_202204, df_202205)</code></pre>
+<p>We will also make a backup of the merged data frame, as we want to
+keep a copy of the dataset pre-cleaning.</p>
+<pre class="r"><code>df_bike_backup &lt;- df_bike</code></pre>
+</div>
+<div id="adding-calculated-columns" class="section level3">
+<h3>Adding Calculated Columns</h3>
+<p>To simplify further analysis and add metrics by which to evaluate
+rider behavior, we will create two new columns representing ride length
+(time in minutes), and the day of the week the ride occurred.</p>
+<pre class="r"><code>df_bike$ride_length &lt;- as.numeric(df_bike$ended_at - df_bike$started_at, units=&quot;mins&quot;)
+df_bike_test$day_of_week &lt;- wday(df_bike_test$started_at)</code></pre>
+</div>
+<div id="cleaning-dataset" class="section level3">
+<h3>Cleaning Dataset</h3>
+<p>We will first check for any duplicate records with get_dupes() from
+the janitor package:</p>
+<pre class="r"><code>df_bike &lt;- distinct(df_bike)</code></pre>
+<p>Then, we remove columns that are not relevant to the analysis, namely
+trip ID, …</p>
 </div>
 </div>
 
