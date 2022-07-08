@@ -215,9 +215,10 @@ df_bike <- select(df_bike, -c(ride_id, start_station_name, start_station_id,
                               end_station_name, end_station_id))
 ```
 
-As mentioned earlier, some ride records have either negative or extremely long ride lengths. Here, we will remove records with negative ride length and ride length of over 24 hours.
+As mentioned earlier, some ride records have either negative or extremely long ride lengths. Here, we will remove records with negative ride lengths and ride lengths of over 24 hours.
 
 ```{r. eval = FALSE}
-df_bike_test %>% 
+df_bike <- df_bike %>% 
   filter(ride_length < 1440 & ride_length > 0)
 ```
+

@@ -31,17 +31,18 @@ df_bike <- rbind(df_202106, df_202107, df_202108, df_202109, df_202110,
                  df_202204, df_202205)
 df_bike_backup <- df_bike
 
-# adding calculated columns
+# creating calculated columns
 df_bike$ride_length <- as.numeric(df_bike$ended_at - df_bike$started_at, units="mins")
 df_bike$day_of_week <- wday(df_bike$started_at)
 
 # check for duplicates
 df_bike <- distinct(df_bike)
 
-# remove columns not required in analysis
+# drop columns not required in analysis
 df_bike <- select(df_bike, -c(ride_id, start_station_name, start_station_id, 
                               end_station_name, end_station_id))
 
 # filter out negative and >24 hour rides
-df_bike_test %>% 
+df_bike <- df_bike %>% 
   filter(ride_length < 1440 & ride_length > 0)
+
