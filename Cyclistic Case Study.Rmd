@@ -117,7 +117,9 @@ To gain a better general understanding of the data for the next step (assessing 
 
 ```{r, eval = FALSE}
 skim_without_charts(df_202106)
+```
 
+```
 ── Data Summary ────────────────────────
                            Values   
 Name                       df_202106
@@ -160,7 +162,7 @@ Having taken a high-level look at the summary metrics for our dataset, we can st
 To assess data quality, we use the ROCCC (reliable-original-comprehensive-current-cited) model.
 
 **Reliability**  
-As seen in the data summary, over 10% of rides have missing values. Upon inspecting the data frame in RStudio, we also found a significant number of rides over 24 hours, as well as rides with end date/time before start date/time. Station IDs were also found to have changed over time, possibly indicative of changes in data collection.
+As seen in the data summary, over 10% of rides have missing values. Upon inspecting the data frame in RStudio, we also found a significant number of rides over 24 hours, as well as rides with end date/time before start date/time. Station IDs formats were found to have changed over time, possibly indicative of changes in data collection techniques.
 
 **Originality**  
 The data are sourced directly from Motivate International, a major bicycle sharing provider in North America. As they are also the operators of Cyclistic, this data is deemed original.
@@ -185,7 +187,7 @@ df_bike <- rbind(df_202106, df_202107, df_202108, df_202109, df_202110,
                  df_202204, df_202205)
 ```
 
-We will also make a backup of the merged data frame, as we want to keep a copy of the dataset pre-cleaning.
+We will also make a backup of the merged data frame, as we want to keep a copy of the raw dataset pre-cleaning.
 
 ```{r, eval = FALSE}
 df_bike_backup <- df_bike
@@ -196,13 +198,26 @@ To simplify further analysis and add metrics by which to evaluate rider behavior
 
 ```{r, eval = FALSE}
 df_bike$ride_length <- as.numeric(df_bike$ended_at - df_bike$started_at, units="mins")
-df_bike_test$day_of_week <- wday(df_bike_test$started_at)
+df_bike$day_of_week <- wday(df_bike$started_at)
 ```
 
 ### Cleaning Dataset
 We will first check for any duplicate records:
+
 ```{r, eval = FALSE}
 df_bike <- distinct(df_bike)
 ```
 
-Then, we remove columns that are not relevant to the analysis, namely trip ID, ...
+Then, we remove columns that are not relevant to the analysis, namely ride ID, and start/end station information (we will rely on coordinates should we wish to analyze customer behavior geographically).
+
+```{r, eval = FALSE}
+df_bike <- select(df_bike, -c(ride_id, start_station_name, start_station_id, 
+                              end_station_name, end_station_id))
+```
+
+As mentioned earlier, some ride records have either negative or extremely long ride lengths. Here, we will remove records with negative ride length and ride length of over 24 hours.
+
+```{r. eval = FALSE}
+df_bike_test %>% 
+  filter(ride_length < 1440 & ride_length > 0)
+```

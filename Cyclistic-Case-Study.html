@@ -527,9 +527,8 @@ df_202205 &lt;- read_csv(&quot;datasets/202205-divvy-tripdata.csv&quot;)</code><
 <p>To gain a better general understanding of the data for the next step
 (assessing data quality), we can call skim_without_charts() on one of
 our datasets for a brief summary:</p>
-<pre class="r"><code>skim_without_charts(df_202106)
-
-── Data Summary ────────────────────────
+<pre class="r"><code>skim_without_charts(df_202106)</code></pre>
+<pre><code>── Data Summary ────────────────────────
                            Values   
 Name                       df_202106
 Number of rows             729595   
@@ -618,8 +617,7 @@ df_bike_test$day_of_week &lt;- wday(df_bike_test$started_at)</code></pre>
 </div>
 <div id="cleaning-dataset" class="section level3">
 <h3>Cleaning Dataset</h3>
-<p>We will first check for any duplicate records with get_dupes() from
-the janitor package:</p>
+<p>We will first check for any duplicate records:</p>
 <pre class="r"><code>df_bike &lt;- distinct(df_bike)</code></pre>
 <p>Then, we remove columns that are not relevant to the analysis, namely
 trip ID, …</p>
