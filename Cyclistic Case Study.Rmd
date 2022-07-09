@@ -363,11 +363,12 @@ df_bike %>%
   summarize(num_of_rides = n()) %>% 
   ggplot(aes(x = weekday_name, y = num_of_rides, fill = member_casual)) +
   geom_col(position = "dodge") +
-  labs(x = "Day of Week", y = "Number of Rides", title = "Total Rides: By Day of Week and Rider Type", fill = "Rider Type") + 
+  labs(x = "Day of Week", y = "Number of Rides", title = "Total Rides: By Day of Week and Rider Type", fill = "Rider Type", caption = "Time frame: May 2021 to June 2022") + 
   scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
 ```
 
-![Chart image](visualizations/total_rides_by_day_of_week_rider_type.png)  
+![chart image](visualizations/total_rides_by_day_of_week_rider_type.png)  
+
 From this chart, we can see that casual riders tend to use Cyclistic on weekends, while members ride more on weekdays. This confirms our previous findings above, and suggests that casual riders choose Cyclistic for their mobility needs in Chicago during weekend activities, while members use Cyclistic more for commuting and work trips.
 
 ### Total Rides: By Month and Rider Type
@@ -379,11 +380,28 @@ df_bike %>%
   summarize(num_of_rides = n()) %>% 
   ggplot(aes(x = month_name, y = num_of_rides, fill = member_casual)) +
   geom_col(position = "dodge") +
-  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Month and Rider Type", fill = "Rider Type") +
+  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Month and Rider Type", fill = "Rider Type", caption = "Time frame: May 2021 to June 2022") +
   scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
 ```
 
-![Chart image](visualizations/total_rides_by_month_rider_type.png)  
+![chart image](visualizations/total_rides_by_month_rider_type.png)  
+
 Here, we see that demand is low in winter months, likely as a result of cold weather and poor road conditions. Demand for members is less affected in winter, lending support to our previous theory that members commute more while casual riders use the service as a part of their recreational activities.
+
+### Total Rides: By Bike Type and Rider Type over Time
+Earlier, we found no significant insights from bike preferences. We'll plot it against time to see if there are any correlations to be found:
+
+```{r, eval = FALSE}
+df_bike %>% 
+  group_by(member_casual, rideable_type, month_name) %>% 
+  summarize(num_of_rides = n()) %>% 
+  ggplot(aes(x = month_name, y = num_of_rides, fill = rideable_type)) +
+  geom_col(position = "dodge") +
+  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Bike Type and Rider Type over Time",  fill = "Bike Type", caption = "Time frame: May 2021 to June 2022") +
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K")) +
+  facet_wrap(~member_casual)
+```
+
+![chart image](visualizations/total_rides_by_bike_type_rider_type_time.png) 
 
 ## Recommendations
