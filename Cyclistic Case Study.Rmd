@@ -354,7 +354,7 @@ df_bike %>%
 Overall, **classic bikes are more popular than electric bikes for both customer types**. However, correlation does not equal causation, and these results may be influenced by the availability/proportion of each respective bike type in the Cyclistic network.
 
 ## Visualizations and Key Findings
-### Total Rides: By Day of Week and Member vs. Casual Rider
+### Total Rides: By Day of Week and Rider Type
 Following our previous findings of the most popular days for riding by member/casual rider, we'll dig deeper and look at each day of the week with a chart:
 
 ```{r, eval=FALSE}
@@ -363,13 +363,27 @@ df_bike %>%
   summarize(num_of_rides = n()) %>% 
   ggplot(aes(x = weekday_name, y = num_of_rides, fill = member_casual)) +
   geom_col(position = "dodge") +
-  labs(x = "Day of Week", y = "Number of Rides", title = "Total Rides: By Day of Week and Member vs. Casual Rider", fill = "Rider Type") + 
+  labs(x = "Day of Week", y = "Number of Rides", title = "Total Rides: By Day of Week and Rider Type", fill = "Rider Type") + 
   scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
 ```
 
-![Chart image](visualizations/total_rides_by_day_of_week_member_casual.png)
-From this chart, we can see that casual riders tend to use Cyclistic on weekends, while members ride more on weekdays. This confirms our previous findings above, and suggests that casual riders choose Cyclistic for their mobility needs in Chicago during weekend activities.
+![Chart image](visualizations/total_rides_by_day_of_week_rider_type.png)  
+From this chart, we can see that casual riders tend to use Cyclistic on weekends, while members ride more on weekdays. This confirms our previous findings above, and suggests that casual riders choose Cyclistic for their mobility needs in Chicago during weekend activities, while members use Cyclistic more for commuting and work trips.
 
-### 
+### Total Rides: By Month and Rider Type
+We also want to see how total rides break down by month:
+
+```{r, eval = FALSE}
+df_bike %>% 
+  group_by(member_casual, month_name) %>% 
+  summarize(num_of_rides = n()) %>% 
+  ggplot(aes(x = month_name, y = num_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Month and Rider Type", fill = "Rider Type") +
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
+```
+
+![Chart image](visualizations/total_rides_by_month_rider_type.png)  
+Here, we see that demand is low in winter months, likely as a result of cold weather and poor road conditions. Demand for members is less affected in winter, lending support to our previous theory that members commute more while casual riders use the service as a part of their recreational activities.
 
 ## Recommendations
