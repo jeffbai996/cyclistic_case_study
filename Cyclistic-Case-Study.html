@@ -1817,9 +1817,74 @@ Group variables            None
 have our added ride_length, day_of_week, and month_of_year columns, all
 of which have valid ranges of values.</p>
 </div>
+<div id="ride-length-member-vs.-casual" class="section level3">
+<h3>Ride Length: Member vs. Casual</h3>
+<p>Drawing upon our calculated ride length column, we will compare mean
+and median ride lengths of members and casual riders.</p>
+<pre class="r"><code>aggregate(df_bike$ride_length ~ df_bike$member_casual, FUN = mean)
+aggregate(df_bike$ride_length ~ df_bike$member_casual, FUN = median)</code></pre>
+<p><strong>Mean</strong></p>
+<pre><code>  df_bike$member_casual df_bike$ride_length
+1                casual            25.49791
+2                member            12.80492</code></pre>
+<p><strong>Median</strong></p>
+<pre><code>  df_bike$member_casual df_bike$ride_length
+1                casual           15.250000
+2                member            9.116667</code></pre>
+<p>We can see that, on average, <strong>casual riders take longer rides
+than members</strong>.</p>
+</div>
+<div id="ride-length-by-day-of-week" class="section level3">
+<h3>Ride Length: By Day of Week</h3>
+<p>We take a look at the day of the week when members and casual riders
+take the most trips (the mode).</p>
+<p>Since neither R nor the packages we use in this analysis have a
+built-in function for determining the statistical mode of a dataset, we
+will define one ourselves with the name “Mode”:</p>
+<pre class="r"><code>Mode &lt;- function(x) {
+  ux &lt;- unique(x)
+  ux &lt;- [which.max(tabulate(match(x, ux)]
+}</code></pre>
+<p>We can then find the mode for day_of_week grouped by member/casual
+rider.</p>
+<pre class="r"><code>aggregate(df_bike$day_of_week ~ df_bike$member_casual, FUN = Mode)</code></pre>
+<pre><code>  df_bike$member_casual df_bike$day_of_week
+1                casual                   7
+2                member                   3</code></pre>
+<p>For casual riders, the most popular day of the week for rides is
+<strong>Sunday</strong>.<br />
+For Cyclistic members, the most popular day is
+<strong>Wednesday</strong>.</p>
+</div>
+<div id="type-of-bike-member-vs.-casual" class="section level3">
+<h3>Type of Bike: Member vs. Casual</h3>
+<p>We also want to see whether there are any significant differences in
+bike preference between members and casual riders:</p>
+<pre class="r"><code>df_bike %&gt;% 
+  group_by(member_casual, rideable_type) %&gt;% 
+  summarize(count = n())</code></pre>
+<pre><code>  member_casual rideable_type   count
+  &lt;chr&gt;         &lt;chr&gt;           &lt;int&gt;
+1 casual        classic_bike  1233949
+2 casual        docked_bike    273027
+3 casual        electric_bike 1048653
+4 member        classic_bike  1980537
+5 member        electric_bike 1319558</code></pre>
+<p>Overall, <strong>classic bikes are more popular than electric bikes
+for both customer types</strong>.</p>
+</div>
 </div>
 <div id="visualizations-and-key-findings" class="section level2">
 <h2>Visualizations and Key Findings</h2>
+<div id="total-rides-by-day-of-week-and-member-vs.-casual-rider" class="section level3">
+<h3>Total Rides: By Day of Week and Member vs. Casual Rider</h3>
+<p>Following our previous findings of the most popular days for riding
+by member/casual rider, we’ll dig deeper and look at each day of the
+week with a chart:</p>
+<pre class="r"><code>df_bike %&gt;% 
+
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) + geom_col()</code></pre>
+</div>
 </div>
 <div id="recommendations" class="section level2">
 <h2>Recommendations</h2>
