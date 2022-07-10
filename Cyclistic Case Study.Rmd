@@ -403,5 +403,6 @@ df_bike %>%
 ```
 
 ![chart image](visualizations/total_rides_by_bike_type_rider_type_time.png) 
+Demand for electric bikes appears to dip for members in the summer while remaining strong for casual members. This provides more support for our hypothesis that members utilize Cyclistic for commuting needs.
 
 ## Recommendations
