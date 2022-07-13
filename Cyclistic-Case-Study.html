@@ -1849,7 +1849,7 @@ will define one ourselves with the name “Mode” (code by Ken Williams on
 Overflow</a>):</p>
 <pre class="r"><code>Mode &lt;- function(x) {
   ux &lt;- unique(x)
-  ux &lt;- [which.max(tabulate(match(x, ux)]
+  ux[which.max(tabulate(match(x, ux)))]
 }</code></pre>
 <p>We can then find the mode for day_of_week grouped by member/casual
 rider:</p>
@@ -2004,6 +2004,13 @@ during this period are unlikely to be effective. We recommend that any
 digital marketing campaign be conducted between the months of June and
 September, where demand for Cyclistic bikes among the casual rider
 demographic is at its highest.</p>
+</div>
+<div id="recommendation-4" class="section level3">
+<h3>Recommendation 4</h3>
+<p><strong>Adjust Pricing to Capture Casual Riders</strong> To increase
+the appeal of the “casual annual membership” tier to non-members, we
+propose raising prices for single-ride and full-day passes on the
+weekend after launching the new membership tier.</p>
 </div>
 </div>
 </div>

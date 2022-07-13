@@ -312,7 +312,7 @@ Since neither R nor the packages we use in this analysis have a built-in functio
 ```{r, eval = FALSE}
 Mode <- function(x) {
   ux <- unique(x)
-  ux <- [which.max(tabulate(match(x, ux)]
+  ux[which.max(tabulate(match(x, ux)))]
 }
 ```
 

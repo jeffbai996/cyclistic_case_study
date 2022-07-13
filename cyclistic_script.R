@@ -5,6 +5,7 @@ install.packages("skimr")
 install.packages("lubridate")
 install.packages("janitor")
 
+# loading packages
 library(tidyverse)
 library(here)
 library(skimr)
@@ -42,7 +43,56 @@ df_bike <- distinct(df_bike)
 df_bike <- select(df_bike, -c(ride_id, start_station_name, start_station_id, 
                               end_station_name, end_station_id))
 
+# mutate day of week/month to human readable format
+df_bike <- df_bike %>% 
+  mutate(weekday_name = wday(day_of_week, label = TRUE)) %>% 
+  mutate(month_name = month(month_of_year, label = TRUE))
+
 # filter out negative and >24 hour rides
 df_bike <- df_bike %>% 
   filter(ride_length < 1440 & ride_length > 0)
 
+# compare mean and median ride lengths
+aggregate(df_bike$ride_length ~ df_bike$member_casual, FUN = mean)
+aggregate(df_bike$ride_length ~ df_bike$member_casual, FUN = median)
+
+# find most popular day of week for rides
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+aggregate(df_bike$day_of_week ~ df_bike$member_casual, FUN = Mode)
+
+# number of rides by bike type and customer type
+df_bike %>% 
+  group_by(member_casual, rideable_type) %>% 
+  summarize(num_of_rides = n())
+
+# visualize total rides by day of week and rider type
+df_bike %>% 
+  group_by(member_casual, weekday_name) %>% 
+  summarize(num_of_rides = n()) %>% 
+  ggplot(aes(x = weekday_name, y = num_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(x = "Day of Week", y = "Number of Rides", title = "Total Rides: By Day of Week and Rider Type", fill = "Rider Type", caption = "Time frame: May 2021 to June 2022") + 
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
+
+# visualize total rides by month and rider type
+df_bike %>% 
+  group_by(member_casual, month_name) %>% 
+  summarize(num_of_rides = n()) %>% 
+  ggplot(aes(x = month_name, y = num_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Month and Rider Type", fill = "Rider Type", caption = "Time frame: May 2021 to June 2022") +
+  scale_y_continuous(breaks = c(100000, 200000, 300000, 400000, 500000), labels = c("100K", "200K", "300K", "400K", "500K"))
+
+# visualize total rides by bike type and rider type over time - 2 facets (member and casual)
+df_bike %>% 
+  group_by(member_casual, rideable_type, month_name) %>% 
+  summarize(num_of_rides = n()) %>% 
+  ggplot(aes(x = month_name, y = num_of_rides, fill = rideable_type)) +
+  geom_col(position = "dodge") +
+  labs(x = "Month", y = "Number of Rides", title = "Total Rides: By Bike Type and Rider Type over Time",  fill = "Bike Type", caption = "Time frame: May 2021 to June 2022") +
+  scale_y_continuous(breaks = c(100000, 200000, 300000), labels = c("100K", "200K", "300K")) +
+  facet_wrap(~member_casual)
