@@ -431,3 +431,7 @@ Outside of the peak months of June to September, casual riders prefer electric b
 ### Recommendation 3
 **Market Towards Casual Riders in Summer Months**  
 Demand and top-of-mind awareness for casual riders is very low during the winter months (November through March) and marketing campaigns done during this period are unlikely to be effective. We recommend that any digital marketing campaign be conducted between the months of June and September, where demand for Cyclistic bikes among the casual rider demographic is at its highest.
+
+### Recommendation 4
+**Adjust Pricing to Capture Casual Riders**
+To increase the appeal of the "casual annual membership" tier to non-members, we propose raising prices for single-ride and full-day passes on the weekend after launching the new membership tier.
