@@ -402,6 +402,32 @@ df_bike %>%
 ```
 
 ![chart image](visualizations/total_rides_by_bike_type_rider_type_time.png) 
-Demand for electric bikes appears to dip for members in the summer while remaining strong for casual members. This provides more support for our hypothesis that members utilize Cyclistic for commuting needs.
+Demand for electric bikes appears to dip for members in the summer while remaining strong for casual members. This provides more support for our hypothesis that members utilize Cyclistic for commuting needs. In addition, for casual riders, electric bikes are more popular outside the peak period of June to September.
 
 ## Recommendations
+First, we'll summarize the findings from our analyses above in the context of our business task questions:
+
+**How do annual members and casual riders user Cyclistic bikes differently?**
+
+* On average, casual riders take longer trips than Cyclistic members.
+* Casual riders are most active on weekends, while Cyclistic members are most active on weekdays.
+* Demand for classic bikes outstrips electric bikes during the summer months for both customer types.
+* The analysis suggests that members use Cyclistic more for non-discretionary trips, such as commuting. However, this cannot be confirmed with certainty without surveying riders about the purpose of their trips.
+
+**Why would casual riders buy Cyclistic annual memberships?**  
+Based on our analysis, casual riders would most likely wish to buy a membership that covers their specific riding needs, namely access during weekends and other off-peak periods.
+
+**How can Cyclistic use digital media to influence casual riders to become members?**  
+Cyclistic should target digital campaigns to casual riders during periods of peak demand, such as in the summer, or on weekends.
+
+### Recommendation 1 
+**Create a New Type of Annual Membership Targeting Current Casual Riders**  
+As seen from our previous analysis, Cyclistic has a large customer base of casual riders with a demonstrated preference for weekend/summer (leisure) riding. However, the current annual membership offers unlimited access throughout the year. To better target this audience, we propose the creation of a new type of annual membership which allows for unlimited rentals on Fridays, Saturdays, and Sundays.
+
+### Recommendation 2
+**Add More Electric Bikes to the Cyclistic Network**  
+Outside of the peak months of June to September, casual riders prefer electric bikes to classic bikes. We propose adding more electric bikes to the network with the goal of introducing more casual members to the network, who can then be targeted with our "casual annual membership" outlined in Recommendation 1.
+
+### Recommendation 3
+**Market Towards Casual Riders in Summer Months**  
+Demand and top-of-mind awareness for casual riders is very low during the winter months (November through March) and marketing campaigns done during this period are unlikely to be effective. We recommend that any digital marketing campaign be conducted between the months of June and September, where demand for Cyclistic bikes among the casual rider demographic is at its highest.
