@@ -1633,14 +1633,12 @@ data cleaning.</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 
 library(tidyverse)</code></pre>
-<p>To assist in data cleaning, install here, skimr, lubridate, and
-janitor, and load them into the environment:</p>
-<pre class="r"><code>install.packages(&quot;here&quot;)
-install.packages(&quot;skimr&quot;)
+<p>To assist in data cleaning, install skimr, lubridate, and janitor,
+and load them into the environment:</p>
+<pre class="r"><code>install.packages(&quot;skimr&quot;)
 install.packages(&quot;lubridate&quot;)
 install.packages(&quot;janitor&quot;)
 
-library(here)
 library(skimr)
 library(lubridate)
 library(janitor)</code></pre>
@@ -1748,15 +1746,16 @@ merge our 12 data frames into 1.</p>
 keep a copy of the raw dataset pre-cleaning.</p>
 <pre class="r"><code>df_bike_backup &lt;- df_bike</code></pre>
 </div>
-<div id="aggregating-columns" class="section level3">
-<h3>Aggregating Columns</h3>
+<div id="adding-columns" class="section level3">
+<h3>Adding Columns</h3>
 <p>To simplify further analysis and add metrics by which to evaluate
 rider behavior, we will create two new columns representing ride length
 (time in minutes), and the day of the week the ride occurred.</p>
 <pre class="r"><code>df_bike$ride_length &lt;- as.numeric(df_bike$ended_at - df_bike$started_at, units=&quot;mins&quot;)
 df_bike$day_of_week &lt;- wday(df_bike$started_at)</code></pre>
-<p>We also want to aggregate monthly data for later analysis to intuit
-possible customer behavior changes by month (or season).</p>
+<p>We also want to grab the start month for rides, to be used in later
+analysis to intuit possible customer behavior changes by month (or
+season).</p>
 <pre class="r"><code>df_bike$month_of_year &lt;- month(df_bike$started_at)</code></pre>
 <p>Lastly we want the day of week and month in human-readable format for
 our later visualizations:</p>
@@ -1972,8 +1971,8 @@ did not have any docked bike rides.</em></p>
     caption = &quot;Time frame: May 2021 to June 2022&quot;
   ) +
   scale_y_continuous(
-    breaks = c(100000, 200000, 300000), 
-    labels = c(&quot;100K&quot;, &quot;200K&quot;, &quot;300K&quot;)
+    breaks = c(100000, 200000), 
+    labels = c(&quot;100K&quot;, &quot;200K&quot;)
   ) +
   scale_fill_manual(
     values = c(&quot;classic_bike&quot; = &quot;#42b3f5&quot;,
